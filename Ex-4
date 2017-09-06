@@ -1,0 +1,47 @@
+Name <- c('Jack', 'Rose', 'Jill', 'Emma', 'Liz')
+Age <- c(22,23,24,25,26)
+Maths <- c(24,35,34,34,34)
+Science <- c(65,67,56,78,23)
+TotalMarks <- c(152,153,161,143,182)
+DJ1 <- data.frame(Name,Age,Maths, Science, TotalMarks)
+DJ1
+View(DJ1)
+DJ1$TotalMarks <-DJ1$Maths+DJ1$Science
+View(DJ1)
+
+DJ1$pct_math <- round(100*DJ1$Maths/DJ1$TotalMarks)
+View(DJ1)
+DJ1 <- DJ1[,c(2,6)]     
+View(DJ1)
+DJ1 <- DJ1[,c(2:6)]
+DJ1 <- DJ1(,c())
+names_DJ1 <- names(DJ1)
+names(DJ1) <- c('a','b')
+View(DJ1)
+names(DJ1) <- names_DJ1
+View(DJ1)
+vector1 <- seq(1,10, by=2)
+vector1[3] <-100
+
+v_col <- names(DJ1)
+v_col[3] <- "NewMaths"
+View(DJ1)
+
+DJ1$Age=exp(DJ1$Age)
+
+View(DJ1)
+class(DJ1$Name)
+DJ1$Name <- as.character(DJ1$Name)
+class(DJ1$Name)
+
+
+s1 <-DJ1$Age>=23
+
+DJ1 <- DJ1[s1,]
+View(DJ1)
+
+?sample
+
+sample_DJ1 <- sample(1:nrow(DJ1),3,replace=F)
+sample_DJ1
+sample_DJ1
