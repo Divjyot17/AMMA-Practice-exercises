@@ -1,28 +1,20 @@
 # 1. Read 2 table from html page https://en.wikipedia.org/wiki/India–Pakistan_cricket_rivalry and find the number of ODI matches won by India
 #
-install.packages("rvest")
-library(rvest)
+library("xml2")
+library("rvest")
 getwd()
 setwd("C:/Program Files/AMMA 2017/Data")
-
-theurl <- "https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry"
-file<-read_html(theurl)
-tables<-html_nodes(file, "table")
-table1 <- html_table(tables[7], fill = TRUE)
-View(table1)
-DFDJ <- as.data.frame(table1)
-View(DFDJ)
-DFDJ$Tests
-top5 <- DFDJ[rev(order(DFDJ$Tests)),"Top 5 highest number of test wins"][1:5]
-View(top5)
-#Visualising the data using a plot
-
-install.packages("psych")
-library(psych)
-library(help=psych)
-
-# histogram
-hist(Age)
-?hist 
-hist(Age, breaks=50)
-matchesWon=0  #Initiating the tracking counter
+input_csv.df<-read.csv("DP_LIVE_02072017055613917.csv",header=T)
+class(input_csv.df)
+input_csv.df<-input_csv.df[,-8]
+View(input_csv.df)
+cricket_datalink = "https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry"
+cricket_data=read_html(cricket_datalink)
+cricket_table=html_nodes(cricket_data,"table")
+cricket_table_final<-html_table(cricket_table[2],fill=TRUE)
+View(cricket_table_final)
+class(cricket_table_final)
+cricket_table.df <- as.data.frame(cricket_table_final)
+View(cricket_table.df)
+NumberODI = cricket_table.df$ODI[2]
+NumberODI
